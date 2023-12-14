@@ -10,7 +10,7 @@ SPECTRA uses an FTDI chip to communicate via UART. The VCP FTDI driver is not pr
 
 ## Requirements
 ```
-Python 3.6.7 
+Python 3.10.12
 ```
 
 ## Install
@@ -35,13 +35,14 @@ pip freeze
 You can also install in a virtual environment following the directions below, which means any other python modules you have installed remain the same, and the EIT project will be in a separate sandbox. 
 
 ```
-virtualenv -p python3 envtest
-
-source envtest/bin/activate
 
 git clone https://github.com/OpenEIT/OpenEIT.git
 
 cd OpenEIT
+
+python3 -m venv venv
+
+source venv/bin/activate
 
 pip install -r requirements.txt
 

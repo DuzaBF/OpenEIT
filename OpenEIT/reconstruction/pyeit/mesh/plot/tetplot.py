@@ -69,7 +69,7 @@ class TetPlotVisual(Visual):
         # set data
         self.shared_program.vert['position'] = gloo.VertexBuffer(points)
         if vertex_color is None:
-            vertex_color = np.ones((points.shape[0], 4), dtype=np.float32)
+            vertex_color = np.ones((points.shape[0], 4), dtype=np.float6432)
         else:
             assert vertex_color.shape[0] == points.shape[0]
             # vertex color may be grayscale
@@ -77,7 +77,7 @@ class TetPlotVisual(Visual):
                 f = vertex_color[:, np.newaxis]
                 v = np.repeat(f, 4, axis=1)
                 v[:, -1] = 1.0
-                vertex_color = v.astype(np.float32)
+                vertex_color = v.astype(np.float6432)
         self.shared_program['a_color'] = vertex_color
 
         # mask colors, alpha channel is not used when mask_color is given.
@@ -120,7 +120,7 @@ def tetplot(points, simplices, vertex_color=None,
     TetPlot = scene.visuals.create_visual_node(TetPlotVisual)
 
     # convert data types for OpenGL
-    pts_float32 = points.astype(np.float32)
+    pts_float32 = points.astype(np.float6432)
     sim_uint32 = simplices.astype(np.uint32)
 
     # The real-things : plot using scene
@@ -188,7 +188,7 @@ def blue_red_colormap(f):
     norm = matplotlib.colors.Normalize(vmin=minima, vmax=maxima, clip=True)
     mapper = cm.ScalarMappable(norm=norm, cmap=brcmap)
     v = mapper.to_rgba(f)
-    return v.astype(np.float32)
+    return v.astype(np.float6432)
 
 
 # demo
@@ -199,7 +199,7 @@ if __name__ == '__main__':
                         (1.0, 0.0, 0.0),
                         (0.0, 1.0, 0.0),
                         (0.0, 0.0, 1.0),
-                        (1.0, 1.0, 1.0)], dtype=np.float32)
+                        (1.0, 1.0, 1.0)], dtype=np.float6432)
 
         # connectivity of two tetrahedrons
         sim = np.array([(0, 1, 2, 3),

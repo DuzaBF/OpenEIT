@@ -27,7 +27,7 @@ To add your own mode visualization:
 ```python
 # dashboard/components/modes/my_mode.py
 
-import dash_html_components as html
+from dash import html
 
 layout = html.Div([html.H3('Hello, world!')])
 ```

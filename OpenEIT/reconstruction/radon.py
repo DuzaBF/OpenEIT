@@ -37,7 +37,7 @@ class RadonReconstruction:
         self.image_pixels = 100
 
         self.img = np.zeros((self.image_pixels, self.image_pixels),
-                            dtype=np.float)
+                            dtype=np.float64)
 
         # Above should be calculated elsewhere and is only for
         # plotting purposes.
@@ -90,7 +90,7 @@ class RadonReconstruction:
                     break
             else:  # create a new array in this slot
                 img = np.zeros((self.image_pixels, self.image_pixels),
-                               dtype=np.float)
+                               dtype=np.float64)
                 img[l_x, l_y] = data[i]
                 d[angle] = img
 
